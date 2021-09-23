@@ -11,9 +11,9 @@ function TodoList (props) {
       {
         activeTodos.length ? activeTodos.map(todo => (
           <li key={todo.id} >
-            <input className="input" type="checkbox" onClick={() => props.done(todo.id)}/>
+            <input className="input" type="checkbox" onClick={() => props.dispatch({action: 'complete', payload: todo.id})}/> 
             <TodoItem todo={todo} edit={props.edit} />
-            <button onClick={() => props.delete(todo.id)}>X</button>
+            <button onClick={() => props.dispatch({type: 'delete', payload: todo.id})}>X</button>
           </li>
         )) : <li className='empty-state'>No Todos Left!</li>
       }

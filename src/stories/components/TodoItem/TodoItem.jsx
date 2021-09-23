@@ -5,12 +5,13 @@ import cssm from './todoitem.module.scss'
 const defaultProps = {id: 1, text: 'fallback', done: false, deleted: false}
 
 function TodoItem (props = defaultProps) {
-  const { todo, edit } = props
+  const { todo, edit, dispatch } = props
   const [editableText, setEditableText] = useState(todo.text)
   const [time, setTime] = useState(new Date(Date.now()).toDateString())
 
   const handleSubmit = e => {
-    edit(todo.id, editableText)
+    // edit(todo.id, editableText)
+    dispatch({type: 'edit', id: todo.id, text: editableText})
   }
 
   return (

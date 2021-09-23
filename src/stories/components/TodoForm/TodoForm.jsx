@@ -7,8 +7,9 @@ function TodoForm (props) {
   const handleSubmit = e => {
     e.preventDefault()
     let trunc = todo.replace(/ /g, '')
-    console.log(trunc)
-    props.setter(trunc)
+    // console.log(trunc)
+    // props.setter(trunc)
+    props.dispatch({type: 'add', payload: {text: trunc}})
     setTodo('')
   }
 
