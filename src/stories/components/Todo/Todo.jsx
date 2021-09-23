@@ -20,7 +20,7 @@ export const AppContext = createContext([
   todoFactory('redux'),
   todoFactory('firebase'),
 ])
-export function useTodos([todos, setTodos]) {
+function useTodos([todos, setTodos]) {
   return {
     todos,
     addTodo: todo => setTodos(prev => ([...prev, todoFactory(todo)])),
@@ -52,7 +52,7 @@ function Todo (props) {
   // }
 
   return (
-    <AppContext.Provider value={todos}>
+    <AppContext.Provider value={todos} >
       <div className={cssm.root}>
         <h1 onClick={() => console.log(AppContext)}>React Todo List for {props.name}</h1>
         <TodoForm />

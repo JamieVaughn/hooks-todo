@@ -7,13 +7,14 @@ import {AppContext} from '../Todo/Todo'
 const defaultProps = {id: 1, text: 'fallback', done: false, deleted: false}
 
 function TodoItem (props = defaultProps) {
-  const { todo, edit } = props
+  const { todo } = props
   const todos = useContext(AppContext)
+  console.log('item', todos)
   const [editableText, setEditableText] = useState(todo.text)
   const [time, setTime] = useState(new Date(Date.now()).toDateString())
 
   const handleSubmit = e => {
-    // edit(todo.id, editableText)
+    // props.edit(todo.id, editableText)
     todos.editTodo(todo.id, editableText)
   }
 

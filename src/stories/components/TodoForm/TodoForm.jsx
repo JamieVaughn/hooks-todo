@@ -6,7 +6,7 @@ function TodoForm () {
   const [todo, setTodo] = useState('')
 
   const todos = useContext(AppContext)
-  console.log('list', todos, todos.addTodo)
+  console.log('form', todos, todos.addTodo)
 
   const handleSubmit = e => {
     e.preventDefault()
