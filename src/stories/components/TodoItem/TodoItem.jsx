@@ -1,16 +1,20 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import cssm from './todoitem.module.scss'
+import {AppContext} from '../Todo/Todo'
+
 
 
 const defaultProps = {id: 1, text: 'fallback', done: false, deleted: false}
 
 function TodoItem (props = defaultProps) {
   const { todo, edit } = props
+  const todos = useContext(AppContext)
   const [editableText, setEditableText] = useState(todo.text)
   const [time, setTime] = useState(new Date(Date.now()).toDateString())
 
   const handleSubmit = e => {
-    edit(todo.id, editableText)
+    // edit(todo.id, editableText)
+    todos.editTodo(todo.id, editableText)
   }
 
   return (

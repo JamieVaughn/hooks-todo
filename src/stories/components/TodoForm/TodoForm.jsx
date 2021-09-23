@@ -1,14 +1,19 @@
-import React, {useState} from 'react'
+import React, {useState, useContext} from 'react'
 import cssm from './todoform.module.scss'
+import {AppContext} from '../Todo/Todo'
 
-function TodoForm (props) {
+function TodoForm () {
   const [todo, setTodo] = useState('')
+
+  const todos = useContext(AppContext)
+  console.log('list', todos, todos.addTodo)
 
   const handleSubmit = e => {
     e.preventDefault()
     let trunc = todo.replace(/ /g, '')
     console.log(trunc)
-    props.setter(trunc)
+    // props.setter(trunc)
+    todos.addTodo(trunc)
     setTodo('')
   }
 
