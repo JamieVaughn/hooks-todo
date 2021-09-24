@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import cssm from './todo.module.scss'
 import TodoList from '../TodoList/TodoList'
 import TodoForm from '../TodoForm/TodoForm'
+import useInterval from '../../../hooks/useInterval'
 
 const uuid = () => {
   let url = URL.createObjectURL(new Blob())
@@ -33,6 +34,13 @@ function Todo (props) {
     setTodos(prev => prev.map(todo => todo.id === id ? {...todo, text} : todo))
   }
 
+  const [count, setCount] = useState(0)
+  const [delay, setDelay] = useState(1000)
+
+  useInterval(() => {
+    setCount(count+1)
+  }, delay)
+
   return (
     <div className={cssm.root}>
       <h1 onClick={() => console.log(todos)}>React Todo List for {props.name}</h1>
@@ -46,6 +54,10 @@ function Todo (props) {
         <span>total: {todos.filter(todo => !todo.deleted).length}</span>
         <button onClick={() => setTodos([])}>Clear All</button>
       </footer>
+      <hr/>
+      <div>{count}</div>
+      <input type="number" value={delay ?? -1} onChange={e => setDelay(e.target.value)}/>
+      <button onClick={() => setDelay(null)}>Pause</button>
     </div>
   )
 }
