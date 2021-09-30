@@ -1,16 +1,21 @@
 import React, { useState } from 'react'
 import cssm from './todoitem.module.scss'
 
+// redux toolkit
+import { useDispatch } from 'react-redux'
+import { applyEdit } from '../Todo/todoSlice'
 
 const defaultProps = {id: 1, text: 'fallback', done: false, deleted: false}
 
 function TodoItem (props = defaultProps) {
-  const { todo, edit } = props
+  const { todo } = props
   const [editableText, setEditableText] = useState(todo.text)
   const [time, setTime] = useState(new Date(Date.now()).toDateString())
 
-  const handleSubmit = e => {
-    edit(todo.id, editableText)
+  const dispatch = useDispatch()
+
+  const handleSubmit = () => {
+    dispatch(applyEdit({id: todo.id, text: editableText}))
   }
 
   return (
