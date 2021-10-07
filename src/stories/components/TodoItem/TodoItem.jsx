@@ -18,7 +18,7 @@ function TodoItem (props = defaultProps) {
   return (
     <span className={cssm.root}>
       <input 
-      title={todo.text}
+      title={todo.text || todo.title}
       className={todo.done ? cssm.done : ''}
       type="text" 
       value={editableText} 

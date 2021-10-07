@@ -11,12 +11,12 @@ import {
 } from '../Todo/todoSlice.js'
 
 function TodoList () {
-  const todos = useSelector(selectTodos)
+  const list = useSelector(selectTodos)
   const dispatch = useDispatch()
 
   // const activeTodos = props.list.filter(todo => !todo.deleted)
   // console.log('complete action', applyComplete({id: "10"}))
-  const activeTodos = todos.filter(todo => !todo.deleted)
+  const activeTodos = list.todos.filter(todo => !todo.deleted)
 
 
   return (
